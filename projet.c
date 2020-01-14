@@ -250,8 +250,8 @@ int main(){
     scanf("%d",&x);
     printf("Entrez y : ");
     scanf("%d",&y);*/
-    x=83;
-    y=43;
+    x=10;
+    y=10;
 
     creationLab(tab,x,y);
 
