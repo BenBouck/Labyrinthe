@@ -136,7 +136,7 @@ void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX]){
                  *   1 : Chemin
                  *   2 : Vide
                  *   3 : Chemin connecté directement à une sortie
-                 *   4 : Chemin Solution
+                 *   4 : Chemin Solution azdvzegh
                  *   5 : Fin de ligne
                  *   6 : Fin de tableau
                  */
