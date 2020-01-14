@@ -136,7 +136,7 @@ void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX]){
                  *   1 : Chemin
                  *   2 : Vide
                  *   3 : Chemin connecté directement à une sortie
-                 *   4 : /
+                 *   4 : Chemin Solution
                  *   5 : Fin de ligne
                  *   6 : Fin de tableau
                  */
@@ -159,9 +159,6 @@ void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX]){
                 case 6 :
                     i = TAILLE_MAX + 1;
                     j = TAILLE_MAX + 1;
-                    break;
-                default :
-                    printf("%c%c",219,219);
                     break;
             }
         }
