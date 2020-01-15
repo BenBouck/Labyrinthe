@@ -302,7 +302,12 @@ int TrouverDepart(char tab[TAILLE_MAX][TAILLE_MAX],int Longeur){
 }
 
 int NombreToucheR(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j){
-
+    int cpt=0;
+    if(tab[i-1][j]==1){cpt++;}
+    if(tab[i+1][j]==1){cpt++;}
+    if(tab[i][j-1]==1){cpt++;}
+    if(tab[i][j+1]==1){cpt++;}
+    return cpt;
 }
 
 void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt){
