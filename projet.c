@@ -277,6 +277,35 @@ int EcrireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
 
 //Programme de résolution
 
+int LireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
+    FILE *StFichier = NULL;
+
+    StFichier = fopen(fichier, "r");
+
+    if(StFichier != NULL){
+        for (unsigned int j = 0 ; j<TAILLE_MAX ; j++){
+            for (unsigned int i = 0 ; i<TAILLE_MAX ; i++){
+                lab[i][j] = fgetc(StFichier);
+                fgetc(StFichier);
+                if (lab[i][j] == 5){
+                    i = TAILLE_MAX;
+                }
+                if (lab[i][j] == 6){
+                    i = TAILLE_MAX;
+                    j = TAILLE_MAX;
+                }
+            }
+        }
+        fclose(StFichier);
+    }
+    else{
+        return 1;
+    }
+    
+    return 0;
+}
+
+
 int TrouverLongeur(char tab[TAILLE_MAX][TAILLE_MAX]){
     int i=0, cpt=0;
     while(tab[i][0]!=5){
@@ -302,27 +331,33 @@ int TrouverDepart(char tab[TAILLE_MAX][TAILLE_MAX],int Longeur){
 }
 
 int NombreToucheR(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j){
-
+    int cpt=0;
+    if(tab[*i-1][*j]==1){cpt++;}
+    if(tab[*i+1][*j]==1){cpt++;}
+    if(tab[*i][*j-1]==1){cpt++;}
+    if(tab[*i][*j+1]==1){cpt++;}
+    return cpt;
 }
 
 void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt){
-    while(NombreToucheR()!=3){}
+    while(NombreToucheR(tab,i,j)<=2){
         if(dernierMvt==0){
-            i--;
+            *i--;
             dernierMvt=2;
         }
         if(dernierMvt==1){
-            j++;
+            *j++;
             dernierMvt=3;
         }
         if(dernierMvt==2){
-            i++;
+            *i++;
             dernierMvt=0;
         }
         if(dernierMvt==3){
-            j--;
+            *j--;
             dernierMvt=1;
         }
+    }
 
 }
 
@@ -352,9 +387,11 @@ int main(){
 
     creationLab(tab,x,y);
 
+    LireLabyrinthe(tab,"text.txt");
+
     afficherLabyrinthe(tab);
 
-    EcrireLabyrinthe(tab,"text.txt");
+
 
     return 0;
 }
