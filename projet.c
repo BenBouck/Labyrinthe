@@ -283,29 +283,51 @@ int LireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
     StFichier = fopen(fichier, "r");
 
     if(StFichier != NULL){
-        for (unsigned int j = 0 ; j<TAILLE_MAX ; j++){
-            for (unsigned int i = 0 ; i<TAILLE_MAX ; i++){
-                lab[i][j] = fgetc(StFichier);
-                fgetc(StFichier);
-                if (lab[i][j] == 5){
-                    i = TAILLE_MAX;
-                }
-                if (lab[i][j] == 6){
-                    i = TAILLE_MAX;
-                    j = TAILLE_MAX;
-                }
+        unsigned int i = 0;
+        unsigned int j = 0;
+        char fini = 0;
+        while (fini == 0){
+            char c = fgetc(StFichier);
+            switch (c)
+            {
+            case ',':
+                break;
+            case '0':
+                lab[i][j] = 0;
+                i++;
+                break;
+            case '1':
+                lab[i][j] = 1;
+                i++;
+                break;
+            case '4':
+                lab[i][j] = 4;
+                i++;
+                break;
+            case '5':
+                lab[i][j] = 5;
+                i++;
+                j++;
+                break;
+            case '6':
+                lab[i][j] = 6;
+                fini = 1;
+                break;
+            default:
+                break;
             }
+            printf("%c", c);
         }
         fclose(StFichier);
     }
     else{
         return 1;
     }
-    
+
     return 0;
 }
 
-
+/*
 int TrouverLongeur(char tab[TAILLE_MAX][TAILLE_MAX]){
     int i=0, cpt=0;
     while(tab[i][0]!=5){
@@ -368,8 +390,9 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
      *   2 : Gauche
      *   3 : Haut
     */
+   
 
-}
+
 
 
 
