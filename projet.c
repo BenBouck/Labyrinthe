@@ -241,6 +241,39 @@ void creationLab(char tab[TAILLE_MAX][TAILLE_MAX],int x,int y){
     }
 }
 
+/*
+ * ~ Retours ~
+ * 0 : fichier écrit correctement
+ * 1 : Erreut de création ou d'ouverture du fichier
+ */
+int EcrireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
+    FILE *StFichier = NULL;
+
+    StFichier = fopen(fichier, "w+");
+
+    if (StFichier != NULL){
+        for (unsigned int j = 0 ; j<TAILLE_MAX ; j++){
+            for (unsigned int i = 0 ; i<TAILLE_MAX ; i++){
+                fprintf(StFichier, "%i,", lab[i][j]);
+                if (lab[i][j] == 5){
+                    i = TAILLE_MAX;
+                }
+                if (lab[i][j] == 6){
+                    i = TAILLE_MAX;
+                    j = TAILLE_MAX;
+                }
+            }
+        }
+
+        fclose(StFichier);
+    }
+    else {
+        return 1;
+    }
+
+    return 0;    
+}
+
 
 //Programme de résolution
 
@@ -269,7 +302,7 @@ int TrouverDepart(char tab[TAILLE_MAX][TAILLE_MAX],int Longeur){
 }
 
 int NombreToucheR(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j){
-    
+
 }
 
 void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt){
@@ -301,9 +334,9 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
      *   3 : Haut
     */
 
-
-
 }
+
+
 
 int main(){
     char tab[TAILLE_MAX][TAILLE_MAX];
@@ -320,6 +353,8 @@ int main(){
     creationLab(tab,x,y);
 
     afficherLabyrinthe(tab);
+
+    EcrireLabyrinthe(tab,"text.txt");
 
     return 0;
 }
