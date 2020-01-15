@@ -244,27 +244,27 @@ void creationLab(char tab[TAILLE_MAX][TAILLE_MAX],int x,int y){
 
 //Programme de résolution
 
-int TrouvreLongeur(char tab[TAILLE_MAX][TAILLE_MAX]){
+int TrouverLongeur(char tab[TAILLE_MAX][TAILLE_MAX]){
     int i=0, cpt=0;
     while(tab[i][0]!=5){
         cpt++;
         i++;
     }
-    return cpt-1;
+    return cpt;
 }
 
-int TrouvreHauteur(char tab[TAILLE_MAX][TAILLE_MAX], int Longeur){
+int TrouverHauteur(char tab[TAILLE_MAX][TAILLE_MAX], int Longeur){
     int j=0, cpt=0;
-    while(tab[Longeur+1][j]!=5){
+    while(tab[Longeur][j]!=6){
         cpt++;
         j++;
     }
-    return cpt-1;
+    return cpt;
 }
 
-int TrouverDépart(char tab[TAILLE_MAX][TAILLE_MAX],int Longeur){
+int TrouverDepart(char tab[TAILLE_MAX][TAILLE_MAX],int Longeur){
     for(unsigned int i=0;i<Longeur;i++){
-        if(tab[i][0]==3){return i;}
+        if(tab[i][0]==1){return i;}
     }
 }
 
@@ -283,6 +283,8 @@ int main(){
     creationLab(tab,x,y);
 
     afficherLabyrinthe(tab);
+
+    printf("Longeur : %d  // Hauteur : %d // Depart : %d",TrouverLongeur(tab), TrouverHauteur(tab,TrouverLongeur(tab)),TrouverDepart(tab,TrouverLongeur(tab)));
 
     return 0;
 }
