@@ -268,6 +268,43 @@ int TrouverDepart(char tab[TAILLE_MAX][TAILLE_MAX],int Longeur){
     }
 }
 
+int NombreToucheR(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j){
+    
+}
+
+void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt){
+    while(NombreToucheR()!=3){}
+        if(dernierMvt==0){
+            i--;
+            dernierMvt=2;
+        }
+        if(dernierMvt==1){
+            j++;
+            dernierMvt=3;
+        }
+        if(dernierMvt==2){
+            i++;
+            dernierMvt=0;
+        }
+        if(dernierMvt==3){
+            j--;
+            dernierMvt=1;
+        }
+
+}
+
+void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt){
+    /*  ~ DernierMvt ~
+     *   0 : Droite
+     *   1 : Bas
+     *   2 : Gauche
+     *   3 : Haut
+    */
+
+
+
+}
+
 int main(){
     char tab[TAILLE_MAX][TAILLE_MAX];
     int x,y;
@@ -283,8 +320,6 @@ int main(){
     creationLab(tab,x,y);
 
     afficherLabyrinthe(tab);
-
-    printf("Longeur : %d  // Hauteur : %d // Depart : %d",TrouverLongeur(tab), TrouverHauteur(tab,TrouverLongeur(tab)),TrouverDepart(tab,TrouverLongeur(tab)));
 
     return 0;
 }
