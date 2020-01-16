@@ -141,7 +141,7 @@ void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX]){
                  *   6 : Fin de tableau
                  */
                 case 0 :
-                    printf("##");
+                    printf("%c%c",219,219);
                     break;
                 case 1 :
                     printf("  ");
@@ -153,7 +153,7 @@ void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX]){
                     printf("~ ");
                     break;
                 case 4 :
-                    printf("()");
+                    printf("%c%c",176,176);
                     break;
                 case 5 :
                     printf("\n");
@@ -361,21 +361,25 @@ int NombreToucheR(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j){
 }
 
 void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt){
-    while(NombreToucheR(tab,i,j)<=2){
+    while(NombreToucheR(tab,i,j)<2){
+        int tmp;
+        printf("%d\\%d, %d", *i, *j, *dernierMvt);
+        scanf("%d", &tmp);
+        tab[*i][*j]=1;
         if(*dernierMvt==0){
-            *i--;
+            (*i)--;
             *dernierMvt=2;
         }
-        if(*dernierMvt==1){
-            *j++;
+        else if(*dernierMvt==1){
+            (*j)--;
             *dernierMvt=3;
         }
-        if(*dernierMvt==2){
-            *i++;
+        else if(*dernierMvt==2){
+            (*i)++;
             *dernierMvt=0;
         }
-        if(*dernierMvt==3){
-            *j--;
+        else if(*dernierMvt==3){
+            (*j)++;
             *dernierMvt=1;
         }
     }
@@ -494,7 +498,13 @@ int main(){
 
     //creationLab(tab,x,y);
 
+    //EcrireLabyrinthe(tab,"text.txt");
+
     LireLabyrinthe(tab,"text.txt");
+
+    afficherLabyrinthe(tab);
+
+    printf("\n");
 
     Resolution(tab);
 
