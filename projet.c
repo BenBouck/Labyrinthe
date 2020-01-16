@@ -285,9 +285,9 @@ int LireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
     if(StFichier != NULL){
         unsigned int i = 0;
         unsigned int j = 0;
-        char fini = 0;
-        while (fini == 0){
-            char c = fgetc(StFichier);
+        char c;
+        while ((c = fgetc(StFichier))!=EOF){
+            printf("%d ", c);
             switch (c)
             {
             case ',':
@@ -311,12 +311,10 @@ int LireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
                 break;
             case '6':
                 lab[i][j] = 6;
-                fini = 1;
                 break;
             default:
                 break;
             }
-            printf("%c", c);
         }
         fclose(StFichier);
     }
@@ -408,11 +406,11 @@ int main(){
     x=10;
     y=10;
 
-    creationLab(tab,x,y);
+   // creationLab(tab,x,y);
 
     LireLabyrinthe(tab,"text.txt");
 
-    afficherLabyrinthe(tab);
+   // afficherLabyrinthe(tab);
 
 
 
