@@ -21,7 +21,7 @@ int main(){
 
     //EcrireLabyrinthe(tab,"text.txt");
 
-    LireLabyrinthe(tab,"text.txt");
+    lireLabyrinthe(tab,"text.txt");
 
     afficherLabyrinthe(tab);
 
