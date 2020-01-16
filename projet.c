@@ -136,7 +136,7 @@ void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX]){
                  *   1 : Chemin
                  *   2 : Vide
                  *   3 : Chemin connecté directement à une sortie
-                 *   4 : Chemin Solution azdvzegh
+                 *   4 : Chemin solution
                  *   5 : Fin de ligne
                  *   6 : Fin de tableau
                  */
@@ -380,22 +380,26 @@ void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt)
 
 }
 
-void Droite(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *dernierMvt){
+void Droite(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
+    tab[*i][*j]==4;
     *i++;
     *dernierMvt=0;
 }
 
-void Descend(char tab[TAILLE_MAX][TAILLE_MAX], int *j, int *dernierMvt){
+void Descend(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
+    tab[*i][*j]==4;
     *j++;
     *dernierMvt=1;
 }
 
-void Gauche(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *dernierMvt){
+void Gauche(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
+    tab[*i][*j]==4;
     *i--;
     *dernierMvt=2;
 }
 
-void Monte(char tab[TAILLE_MAX][TAILLE_MAX], int *j, int *dernierMvt){
+void Monte(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
+    tab[*i][*j]==4;
     *j--;
     *dernierMvt=3;
 }
@@ -408,7 +412,55 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
      *   2 : Gauche
      *   3 : Haut
     */
-   
+
+    if(*dernierMvt==0){
+        if(tab[*i][*j+1]==1){
+            Descend(tab,i,j,dernierMvt);
+        }
+        if(tab[*i+1][*j]==1){
+            Droite(tab,i,j,dernierMvt);
+        }
+        if(tab[*i][*j-1]==1){
+            Monte(tab,i,j,dernierMvt);
+        }
+        else{Rembobine(tab,i,j,dernierMvt);}
+    }
+    if(*dernierMvt==1){
+        if(tab[*i-1][*j]==1){
+            Gauche(tab,i,j,dernierMvt);
+        }
+        if(tab[*i][*j+1]==1){
+            Descend(tab,i,j,dernierMvt);
+        }
+        if(tab[*i+1][*j]==1){
+            Droite(tab,i,j,dernierMvt);
+        }
+        else{Rembobine(tab,i,j,dernierMvt);}
+    }
+    if(*dernierMvt==2){
+        if(tab[*i][*j-1]==1){
+            Monte(tab,i,j,dernierMvt);
+        }
+        if(tab[*i-1][*j]==1){
+            Gauche(tab,i,j,dernierMvt);
+        }
+        if(tab[*i][*j+1]==1){
+            Descend(tab,i,j,dernierMvt);
+        }
+        else{Rembobine(tab,i,j,dernierMvt);}
+    }
+    if(*dernierMvt==3){
+        if(tab[*i+1][*j]==1){
+            Droite(tab,i,j,dernierMvt);
+        }
+        if(tab[*i][*j-1]==1){
+            Monte(tab,i,j,dernierMvt);
+        }
+        if(tab[*i-1][*j]==1){
+            Gauche(tab,i,j,dernierMvt);
+        }
+        else{Rembobine(tab,i,j,dernierMvt);}
+    }
 }
 
 
@@ -429,9 +481,7 @@ int main(){
 
     LireLabyrinthe(tab,"text.txt");
 
-   afficherLabyrinthe(tab);
-
-
-
+    afficherLabyrinthe(tab);
+   
     return 0;
 }
