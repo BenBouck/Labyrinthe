@@ -10,7 +10,7 @@ Ce projet permet la création, l'affichage en console, la sauvegarde, le chargem
 
 ### Interdiction1
 
-*"Il est interdit de créer un chemin si la case directement à gauche, directement au dessus, et dans le coin supérieur gauche sont des chemins"*
+*"Il est interdit de créer un chemin si la case directement à gauche, directement au dessus, et dans le coin supérieur gauche sont des chemins."*
 
 #### Arguments
 
@@ -25,6 +25,8 @@ Ce projet permet la création, l'affichage en console, la sauvegarde, le chargem
 
 ### Obligation1
 
+*"Un chemin doit forcément être connecté à au moins un autre chemin."*
+
 #### Arguments
 
 * __gauche *(char)*__ : Case directement à gauche
@@ -38,3 +40,9 @@ Ce projet permet la création, l'affichage en console, la sauvegarde, le chargem
 
 * __0__ : Un chemin *doit* être créé.
 * __1__ : Un chemin *peut* être créé.
+
+### Obligation 2
+
+*"Une ligne doit compter au moins un chemin connecté directement à l'entrée"*
+
+#### Arguments
