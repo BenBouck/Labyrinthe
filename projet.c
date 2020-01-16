@@ -24,7 +24,7 @@ int main(){
     lireLabyrinthe(tab,"text.txt");
 
     afficherLabyrinthe(tab);
-
+    
     printf("\n");
 
     Resolution(tab);
