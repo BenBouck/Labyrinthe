@@ -44,7 +44,8 @@ int LireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
     if(StFichier != NULL){
         unsigned int i = 0;
         unsigned int j = 0;
-        while ((char c = fgetc(StFichier))!=EOF){
+        char c;
+        while ((c = fgetc(StFichier))!=EOF){
             switch (c)
             {
             case ',':
@@ -63,7 +64,7 @@ int LireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
                 break;
             case '5':
                 tab[i][j] = 5;
-                i++;
+                i = 0;
                 j++;
                 break;
             case '6':
