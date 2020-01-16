@@ -43,24 +43,32 @@ void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt)
         printf("%d\\%d, %d", *i, *j, *dernierMvt);
         scanf("%d", &tmp);
         tab[*i][*j]=1;
-        if(*dernierMvt==0){
+        switch (TrouveRetour(tab[*i-1][*j], tab[*i+1][j], tab[*i][*j-1], tab[*i][*j+1]))
+        {
+        case 0:
             (*i)--;
-            *dernierMvt=2;
-        }
-        else if(*dernierMvt==1){
+            break;
+        case 1:
             (*j)--;
-            *dernierMvt=3;
-        }
-        else if(*dernierMvt==2){
+            break;
+        case 2:
             (*i)++;
-            *dernierMvt=0;
-        }
-        else if(*dernierMvt==3){
+            break;
+        case 3:
             (*j)++;
-            *dernierMvt=1;
+            break;
+        default:
+            break;
         }
     }
 
+}
+
+int TrouveRetour(char gauche, char droite, char haut, char bas){
+    if (gauche == 4){return 0};
+    if (haut == 4){return 1};
+    if (droite == 4){return 2};
+    if (bas == 4){return 3};
 }
 
 void Droite(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
