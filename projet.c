@@ -136,7 +136,7 @@ void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX]){
                  *   1 : Chemin
                  *   2 : Vide
                  *   3 : Chemin connecté directement à une sortie
-                 *   4 : Chemin Solution azdvzegh
+                 *   4 : Chemin solution
                  *   5 : Fin de ligne
                  *   6 : Fin de tableau
                  */
@@ -283,17 +283,37 @@ int LireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
     StFichier = fopen(fichier, "r");
 
     if(StFichier != NULL){
-        for (unsigned int j = 0 ; j<TAILLE_MAX ; j++){
-            for (unsigned int i = 0 ; i<TAILLE_MAX ; i++){
-                lab[i][j] = fgetc(StFichier);
-                fgetc(StFichier);
-                if (lab[i][j] == 5){
-                    i = TAILLE_MAX;
-                }
-                if (lab[i][j] == 6){
-                    i = TAILLE_MAX;
-                    j = TAILLE_MAX;
-                }
+        unsigned int i = 0;
+        unsigned int j = 0;
+        char c;
+        while ((c = fgetc(StFichier))!=EOF){
+            printf("%d ", c);
+            switch (c)
+            {
+            case ',':
+                break;
+            case '0':
+                lab[i][j] = 0;
+                i++;
+                break;
+            case '1':
+                lab[i][j] = 1;
+                i++;
+                break;
+            case '4':
+                lab[i][j] = 4;
+                i++;
+                break;
+            case '5':
+                lab[i][j] = 5;
+                i++;
+                j++;
+                break;
+            case '6':
+                lab[i][j] = 6;
+                break;
+            default:
+                break;
             }
         }
         fclose(StFichier);
@@ -301,10 +321,9 @@ int LireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
     else{
         return 1;
     }
-    
+
     return 0;
 }
-
 
 int TrouverLongeur(char tab[TAILLE_MAX][TAILLE_MAX]){
     int i=0, cpt=0;
@@ -341,25 +360,50 @@ int NombreToucheR(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j){
 
 void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt){
     while(NombreToucheR(tab,i,j)<=2){
-        if(dernierMvt==0){
+        if(*dernierMvt==0){
             *i--;
-            dernierMvt=2;
+            *dernierMvt=2;
         }
-        if(dernierMvt==1){
+        if(*dernierMvt==1){
             *j++;
-            dernierMvt=3;
+            *dernierMvt=3;
         }
-        if(dernierMvt==2){
+        if(*dernierMvt==2){
             *i++;
-            dernierMvt=0;
+            *dernierMvt=0;
         }
-        if(dernierMvt==3){
+        if(*dernierMvt==3){
             *j--;
-            dernierMvt=1;
+            *dernierMvt=1;
         }
     }
 
 }
+
+void Droite(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
+    tab[*i][*j]==4;
+    *i++;
+    *dernierMvt=0;
+}
+
+void Descend(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
+    tab[*i][*j]==4;
+    *j++;
+    *dernierMvt=1;
+}
+
+void Gauche(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
+    tab[*i][*j]==4;
+    *i--;
+    *dernierMvt=2;
+}
+
+void Monte(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
+    tab[*i][*j]==4;
+    *j--;
+    *dernierMvt=3;
+}
+
 
 void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt){
     /*  ~ DernierMvt ~
@@ -369,6 +413,54 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
      *   3 : Haut
     */
 
+    if(*dernierMvt==0){
+        if(tab[*i][*j+1]==1){
+            Descend(tab,i,j,dernierMvt);
+        }
+        if(tab[*i+1][*j]==1){
+            Droite(tab,i,j,dernierMvt);
+        }
+        if(tab[*i][*j-1]==1){
+            Monte(tab,i,j,dernierMvt);
+        }
+        else{Rembobine(tab,i,j,dernierMvt);}
+    }
+    if(*dernierMvt==1){
+        if(tab[*i-1][*j]==1){
+            Gauche(tab,i,j,dernierMvt);
+        }
+        if(tab[*i][*j+1]==1){
+            Descend(tab,i,j,dernierMvt);
+        }
+        if(tab[*i+1][*j]==1){
+            Droite(tab,i,j,dernierMvt);
+        }
+        else{Rembobine(tab,i,j,dernierMvt);}
+    }
+    if(*dernierMvt==2){
+        if(tab[*i][*j-1]==1){
+            Monte(tab,i,j,dernierMvt);
+        }
+        if(tab[*i-1][*j]==1){
+            Gauche(tab,i,j,dernierMvt);
+        }
+        if(tab[*i][*j+1]==1){
+            Descend(tab,i,j,dernierMvt);
+        }
+        else{Rembobine(tab,i,j,dernierMvt);}
+    }
+    if(*dernierMvt==3){
+        if(tab[*i+1][*j]==1){
+            Droite(tab,i,j,dernierMvt);
+        }
+        if(tab[*i][*j-1]==1){
+            Monte(tab,i,j,dernierMvt);
+        }
+        if(tab[*i-1][*j]==1){
+            Gauche(tab,i,j,dernierMvt);
+        }
+        else{Rembobine(tab,i,j,dernierMvt);}
+    }
 }
 
 
@@ -385,13 +477,11 @@ int main(){
     x=10;
     y=10;
 
-    creationLab(tab,x,y);
+   //creationLab(tab,x,y);
 
     LireLabyrinthe(tab,"text.txt");
 
     afficherLabyrinthe(tab);
-
-
-
+   
     return 0;
 }
