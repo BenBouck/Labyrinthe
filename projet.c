@@ -152,6 +152,9 @@ void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX]){
                 case 3 :
                     printf("~ ");
                     break;
+                case 4 :
+                    printf("()");
+                    break;
                 case 5 :
                     printf("\n");
                     i = TAILLE_MAX + 1;
@@ -277,7 +280,7 @@ int EcrireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
 
 //Programme de résolution
 
-int LireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
+int LireLabyrinthe(char tab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
     FILE *StFichier = NULL;
 
     StFichier = fopen(fichier, "r");
@@ -287,30 +290,29 @@ int LireLabyrinthe(char lab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
         unsigned int j = 0;
         char c;
         while ((c = fgetc(StFichier))!=EOF){
-            printf("%d ", c);
             switch (c)
             {
             case ',':
                 break;
             case '0':
-                lab[i][j] = 0;
+                tab[i][j] = 0;
                 i++;
                 break;
             case '1':
-                lab[i][j] = 1;
+                tab[i][j] = 1;
                 i++;
                 break;
             case '4':
-                lab[i][j] = 4;
+                tab[i][j] = 4;
                 i++;
                 break;
             case '5':
-                lab[i][j] = 5;
-                i++;
+                tab[i][j] = 5;
+                i = 0;
                 j++;
                 break;
             case '6':
-                lab[i][j] = 6;
+                tab[i][j] = 6;
                 break;
             default:
                 break;
@@ -381,26 +383,26 @@ void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt)
 }
 
 void Droite(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
-    tab[*i][*j]==4;
-    *i++;
+    tab[*i][*j]=4;
+    (*i)++;
     *dernierMvt=0;
 }
 
 void Descend(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
-    tab[*i][*j]==4;
-    *j++;
+    tab[*i][*j]=4;
+    (*j)++;
     *dernierMvt=1;
 }
 
 void Gauche(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
-    tab[*i][*j]==4;
-    *i--;
+    tab[*i][*j]=4;
+    (*i)--;
     *dernierMvt=2;
 }
 
 void Monte(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
-    tab[*i][*j]==4;
-    *j--;
+    tab[*i][*j]=4;
+    (*j)--;
     *dernierMvt=3;
 }
 
@@ -412,15 +414,15 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
      *   2 : Gauche
      *   3 : Haut
     */
-
+    int tmp;
     if(*dernierMvt==0){
         if(tab[*i][*j+1]==1){
             Descend(tab,i,j,dernierMvt);
         }
-        if(tab[*i+1][*j]==1){
+        else if(tab[*i+1][*j]==1){
             Droite(tab,i,j,dernierMvt);
         }
-        if(tab[*i][*j-1]==1){
+        else if(tab[*i][*j-1]==1){
             Monte(tab,i,j,dernierMvt);
         }
         else{Rembobine(tab,i,j,dernierMvt);}
@@ -429,10 +431,10 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
         if(tab[*i-1][*j]==1){
             Gauche(tab,i,j,dernierMvt);
         }
-        if(tab[*i][*j+1]==1){
+        else if(tab[*i][*j+1]==1){
             Descend(tab,i,j,dernierMvt);
         }
-        if(tab[*i+1][*j]==1){
+        else if(tab[*i+1][*j]==1){
             Droite(tab,i,j,dernierMvt);
         }
         else{Rembobine(tab,i,j,dernierMvt);}
@@ -441,10 +443,10 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
         if(tab[*i][*j-1]==1){
             Monte(tab,i,j,dernierMvt);
         }
-        if(tab[*i-1][*j]==1){
+        else if(tab[*i-1][*j]==1){
             Gauche(tab,i,j,dernierMvt);
         }
-        if(tab[*i][*j+1]==1){
+        else if(tab[*i][*j+1]==1){
             Descend(tab,i,j,dernierMvt);
         }
         else{Rembobine(tab,i,j,dernierMvt);}
@@ -453,14 +455,27 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
         if(tab[*i+1][*j]==1){
             Droite(tab,i,j,dernierMvt);
         }
-        if(tab[*i][*j-1]==1){
+        else if(tab[*i][*j-1]==1){
             Monte(tab,i,j,dernierMvt);
         }
-        if(tab[*i-1][*j]==1){
+        else if(tab[*i-1][*j]==1){
             Gauche(tab,i,j,dernierMvt);
         }
         else{Rembobine(tab,i,j,dernierMvt);}
     }
+}
+
+void Resolution(char tab[TAILLE_MAX][TAILLE_MAX]){
+    unsigned int i,j,x,y,DernierMvt;
+    x=TrouverLongeur(tab);
+    y=TrouverHauteur(tab,x);
+    i=TrouverDepart(tab,x);
+    j=0;
+    DernierMvt=1;
+    while(j!=y){
+        Deplacement(tab,&i,&j,&DernierMvt);
+    }
+    tab[i][j] = 4;
 }
 
 
@@ -477,9 +492,11 @@ int main(){
     x=10;
     y=10;
 
-   //creationLab(tab,x,y);
+    //creationLab(tab,x,y);
 
     LireLabyrinthe(tab,"text.txt");
+
+    Resolution(tab);
 
     afficherLabyrinthe(tab);
    
