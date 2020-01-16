@@ -38,7 +38,7 @@ int EcrireLabyrinthe(char tab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
     return 0;    
 }
 
-int LireLabyrinthe(char tab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
+int lireLabyrinthe(char tab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
     FILE *StFichier = NULL;
 
     StFichier = fopen(fichier, "r");

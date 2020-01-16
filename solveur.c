@@ -40,10 +40,10 @@ int NombreToucheR(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j){
 
 void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt){
     while(NombreToucheR(tab,i,j)<2){
-        printf("%d\\%d, %d", *i, *j, *dernierMvt);
-        scanf("%d", &tmp);
+        //printf("%d\\%d, %d", *i, *j, *dernierMvt);
+        //scanf("%d", &tmp);
         tab[*i][*j]=1;
-        switch (TrouveRetour(tab[*i-1][*j], tab[*i+1][j], tab[*i][*j-1], tab[*i][*j+1]))
+        switch (TrouveRetour(tab[*i-1][*j], tab[*i+1][*j], tab[*i][*j-1], tab[*i][*j+1]))
         {
         case 0:
             (*i)--;
@@ -65,10 +65,10 @@ void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt)
 }
 
 int TrouveRetour(char gauche, char droite, char haut, char bas){
-    if (gauche == 4){return 0};
-    if (haut == 4){return 1};
-    if (droite == 4){return 2};
-    if (bas == 4){return 3};
+    if (gauche == 4){return 0;}
+    if (haut == 4){return 1;}
+    if (droite == 4){return 2;}
+    if (bas == 4){return 3;}
 }
 
 void Droite(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
