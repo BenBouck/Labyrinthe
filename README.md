@@ -31,9 +31,27 @@ L'utilisation du programme est guidée via une interface console basique.
 
 Les principales fonctions sont les suivantes :
 
-* `creationLab()` : crée un labyrinthe
+* `creationLab()` : crée un labyrinthe.
+    * **prototype** : `void creationLab(char tab[TAILLE_MAX][TAILLE_MAX],int x,int y);`
+    * **arguments** : 
+        * `char labyrinthe[TAILLE_MAX][TAILLE_MAX]` : tableau de `char` de dimention `TAILLE_MAX` par `TAILLE_MAX` où le labyrinthe sera stocké.
+        * `int x` : nombre de colonnes du labyrinthe
+        * `int y` : nombre de lignes du labyrinthe
+* `afficherLabyrinthe` : affiche un labyrinthe.
     * **prototype** : `void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX])`
+    * **argument** : `char labyrinthe[TAILLE_MAX][TAILLE_MAX]` : tableau de `char` de dimention `TAILLE_MAX` par `TAILLE_MAX` où le labyrinthe à afficher est stocké.
+* `ecrireLabyrinthe()` : écrit un labyrinyhe dans un fichier *.txt*.
+    * **prototype** : `int ecrireLabyrinthe(char tab[TAILLE_MAX][TAILLE_MAX], const char *fichier)`
     * **arguments** :
-        * `char labyrinthe[TAILLE_MAX][TAILLE_MAX]` : un tableau de `char` de dimention `TAILLE_MAX` par `TAILLE_MAX` où le labyrinthe sera stocké.
-
+        * `char labyrinthe[TAILLE_MAX][TAILLE_MAX]` : tableau de `char` de dimention `TAILLE_MAX` par `TAILLE_MAX` où le labyrinthe à sauvegarder est stocké.
+        * `const char *fichier` : nom et emplacement du fichier __sans extension__. *N.B.: le fichier sera ouvert aver le paramètre `"w"`, ce qui écrasera son contenu si il existe déjà.*
+* `lireLabyrinthe()` : lit un labyrinthe sauvegardé dans un fichier *.txt*.
+    * **prototype** : `int lireLabyrinthe(char tab[TAILLE_MAX][TAILLE_MAX], const char *fichier)`
+    * **arguments** :
+        * `char labyrinthe[TAILLE_MAX][TAILLE_MAX]` : tableau de `char` de dimention `TAILLE_MAX` par `TAILLE_MAX` où le labyrinthe à ouvrir sera stocké.
+        * `const char *fichier` : nom et emplacement du fichier __sans extension__.
+* `Resolution()` : résout un labyrinthe.
+    * **prototype** : `void Resolution(char tab[TAILLE_MAX][TAILLE_MAX])`
+    * **argument** : `char labyrinthe[TAILLE_MAX][TAILLE_MAX]` : tableau de `char` de dimention `TAILLE_MAX` par `TAILLE_MAX` où le labyrinthe à résoudre est stocké.
+    
 ## Exemples de labyrinthes
