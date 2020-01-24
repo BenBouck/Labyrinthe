@@ -37,14 +37,14 @@ Les principales fonctions sont les suivantes :
         * `char labyrinthe[TAILLE_MAX][TAILLE_MAX]` : tableau de `char` de dimention `TAILLE_MAX` par `TAILLE_MAX` où le labyrinthe sera stocké.
         * `int x` : nombre de colonnes du labyrinthe
         * `int y` : nombre de lignes du labyrinthe
-* `afficherLabyrinthe` : affiche un labyrinthe.
+* `afficherLabyrinthe()` : affiche un labyrinthe.
     * **prototype** : `void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX])`
     * **argument** : `char labyrinthe[TAILLE_MAX][TAILLE_MAX]` : tableau de `char` de dimention `TAILLE_MAX` par `TAILLE_MAX` où le labyrinthe à afficher est stocké.
 * `ecrireLabyrinthe()` : écrit un labyrinyhe dans un fichier *.txt*.
     * **prototype** : `int ecrireLabyrinthe(char tab[TAILLE_MAX][TAILLE_MAX], const char *fichier)`
     * **arguments** :
         * `char labyrinthe[TAILLE_MAX][TAILLE_MAX]` : tableau de `char` de dimention `TAILLE_MAX` par `TAILLE_MAX` où le labyrinthe à sauvegarder est stocké.
-        * `const char *fichier` : nom et emplacement du fichier __sans extension__. *N.B.: le fichier sera ouvert aver le paramètre `"w"`, ce qui écrasera son contenu si il existe déjà.*
+        * `const char *fichier` : nom et emplacement du fichier __sans extension__. *N.B.: le fichier sera ouvert avec le paramètre `"w"`, ce qui écrasera son contenu si il existe déjà.*
 * `lireLabyrinthe()` : lit un labyrinthe sauvegardé dans un fichier *.txt*.
     * **prototype** : `int lireLabyrinthe(char tab[TAILLE_MAX][TAILLE_MAX], const char *fichier)`
     * **arguments** :
@@ -74,6 +74,61 @@ Les labyrinthes présentés en exemple sont disponibles dans le répertoire */la
 ```
 
 ### lab2.txt
+
+```
+██████████████  ████
+████████████    ████
+██        ██  ██  ██
+██  ████████  ██  ██
+██████        ██  ██
+██      ████      ██
+██  ██    ██  ██  ██
+██    ██      ██████
+██  ██    ████    ██
+██  ████████████████
+```
+
 ### lab3.txt
+
+```
+██████████████  ████
+████████████    ████
+██        ██  ██  ██
+██  ████████  ██  ██
+██████        ██  ██
+██      ████      ██
+██  ██    ██  ██  ██
+██    ██      ██████
+██  ██    ████    ██
+██  ████████████████
+```
+
 ### lab4.txt
+
+```
+████████████  ██████
+████████        ████
+████      ██████████
+██    ██      ██  ██
+██  ██    ██  ██  ██
+██  ██  ████  ██████
+██    ████  ██    ██
+██  ██████  ████████
+██      ██  ██    ██
+██████  ████████████
+```
+
 ### lab5.txt
+
+```
+██████████  ████████
+██      ██      ████
+██  ██████  ██  ████
+██  ████      ██████
+██████    ██    ████
+██      ██  ██    ██
+████  ██    ██  ████
+████  ██  ████  ████
+██      ████  ██  ██
+████  ██████████████
+```
