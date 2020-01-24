@@ -55,3 +55,25 @@ Les principales fonctions sont les suivantes :
     * **argument** : `char labyrinthe[TAILLE_MAX][TAILLE_MAX]` : tableau de `char` de dimention `TAILLE_MAX` par `TAILLE_MAX` où le labyrinthe à résoudre est stocké.
     
 ## Exemples de labyrinthes
+
+Les labyrinthes présentés en exemple sont disponibles dans le répertoire */lab* du projet.
+
+### lab1.txt
+
+```
+████  ██████████████
+██    ██          ██
+████  ██  ██████████
+████  ██████      ██
+██            ██████
+██████  ████  ██████
+████    ████      ██
+████  ██    ████████
+████  ██████████  ██
+████  ██████████████
+```
+
+### lab2.txt
+### lab3.txt
+### lab4.txt
+### lab5.txt
