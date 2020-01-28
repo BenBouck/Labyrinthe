@@ -1,5 +1,5 @@
 #include<stdio.h>
-#define TAILLE_MAX 100
+#include "affichage.h"
 
 void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX]){
     for (unsigned int j = 0 ; j < TAILLE_MAX ; j++){

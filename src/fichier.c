@@ -10,7 +10,7 @@
  * 0 : fichier écrit correctement
  * 1 : Erreut de création ou d'ouverture du fichier
  */
-int EcrireLabyrinthe(char tab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
+int ecrireLabyrinthe(char tab[TAILLE_MAX][TAILLE_MAX], const char *fichier){
     FILE *StFichier = NULL;
 
     StFichier = fopen(fichier, "w+");

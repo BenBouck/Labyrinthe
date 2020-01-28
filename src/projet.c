@@ -10,6 +10,14 @@
 #include "fichier.h"
 #include "solveur.h"
 
+void copyLab(char tab[TAILLE_MAX][TAILLE_MAX], char tab2[TAILLE_MAX][TAILLE_MAX]){
+    for(int i = 0 ; i < TAILLE_MAX ; i++){
+        for(int j = 0 ; j<TAILLE_MAX ; j++){
+            tab2[i][j] = tab[i][j];
+        }
+    }
+}
+
 int main(){
     srand(time(NULL));
     
@@ -45,10 +53,10 @@ int main(){
             break;
         case 2:     //Sauvegarde un labyrinthe
             if(tabInM == 1){
-                printf("Veuillez saisir un chemin de destination suivi du nom de fichier \n(exemple : ""/lab/ex1"" enregistera un fichier nommé ""ex1.txt"" dans le dossier ""lab1"") \n(attention, si un fichier du même nom existe déjà, il sera écrasé)\n"):
-                scanf("%s", nom);
+                printf("Veuillez saisir un chemin de destination suivi du nom de fichier \n(exemple : ""/lab/ex1"" enregistera un fichier nommé ""ex1.txt"" dans le dossier ""lab1"") \n(attention, si un fichier du même nom existe déjà, il sera écrasé)\n");
+                scanf("%s", &nom);
                 if (ecrireLabyrinthe(tab, strcat(nom, ".txt")) == 1){
-                    printf("Un probleme est survenu, veuillez vérifier le nom de ficier fourni.\n")
+                    printf("Un probleme est survenu, veuillez vérifier le nom de ficier fourni.\n");
                 }
                 if(tabResoluInM == 1){
                     ecrireLabyrinthe(tabResolu, strcat(nom, "_SOLVED.txt"));
@@ -62,7 +70,7 @@ int main(){
             printf("Veuillez saisir l'emplacement et le nom du fichier (sans extension): ");
             scanf("%s", &nom);
             if(lireLabyrinthe(tab, strcat(nom, ".txt")) == 1){
-               printf("Un probleme est survenu, veuillez vérifier le nom de ficier fourni.\n")
+               printf("Un probleme est survenu, veuillez vérifier le nom de ficier fourni.\n");
             } else {
                 tabInM = 1;
                 if(lireLabyrinthe(tabResolu, strcat(nom, "_SOLVED.txt")) == 0){tabResoluInM = 1;}
@@ -86,7 +94,7 @@ int main(){
                     do{
                         printf("Que souhaitez-vous afficher ?\n\t- 0 : labyrinthe vierge\n\t- 1 : labyrinthe résolu\n\t- 2 : les deux\n\n\nVotre choix : ");
                         scanf("%i", &choix2);
-                    } while(choix2 != 0 && choix2 != 1 && choix != 2);
+                    } while(choix2 != 0 && choix2 != 1 && choix2 != 2);
                 }
                 switch (choix2)
                 {
@@ -108,7 +116,7 @@ int main(){
             }
             break;
         default:
-            printf("Veuillez saisir l'une des valeurs proposées.\n")
+            printf("Veuillez saisir l'une des valeurs proposées.\n");
             break;
         }
 
