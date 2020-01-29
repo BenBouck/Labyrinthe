@@ -40,8 +40,6 @@ int NombreToucheR(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j){
 
 void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt){
     while(NombreToucheR(tab,i,j)<2){
-        //printf("%d\\%d, %d", *i, *j, *dernierMvt);
-        //scanf("%d", &tmp);
         tab[*i][*j]=1;
         switch (TrouveRetour(tab[*i-1][*j], tab[*i+1][*j], tab[*i][*j-1], tab[*i][*j+1]))
         {
