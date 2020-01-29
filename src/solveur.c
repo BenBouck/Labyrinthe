@@ -29,46 +29,33 @@ int TrouverDepart(char tab[TAILLE_MAX][TAILLE_MAX],int Longeur){
     }
 }
 
-int NombreToucheR(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j){
-    int cpt=0;
+void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
+    int cpt;
+    tab[*i][*j] = 3;
+    if(tab[*i-1][*j]==4){
+        (*i)--;
+        *dernierMvt = 2;
+    }
+    else if(tab[*i][*j-1]==4){
+        (*j)--;
+        *dernierMvt = 3;
+    }
+    else if(tab[*i+1][*j]==4){
+        (*i)++;
+        *dernierMvt = 0;
+    }
+    else if(tab[*i][*j+1]==4){
+        (*j)++;
+        *dernierMvt = 1;
+    }
+
+    cpt = 0;
     if(tab[*i-1][*j]==1){cpt++;}
     if(tab[*i+1][*j]==1){cpt++;}
     if(tab[*i][*j-1]==1){cpt++;}
     if(tab[*i][*j+1]==1){cpt++;}
-    return cpt;
-}
 
-void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt){
-    while(NombreToucheR(tab,i,j)<2){
-        //printf("%d\\%d, %d", *i, *j, *dernierMvt);
-        //scanf("%d", &tmp);
-        tab[*i][*j]=1;
-        switch (TrouveRetour(tab[*i-1][*j], tab[*i+1][*j], tab[*i][*j-1], tab[*i][*j+1]))
-        {
-        case 0:
-            (*i)--;
-            break;
-        case 1:
-            (*j)--;
-            break;
-        case 2:
-            (*i)++;
-            break;
-        case 3:
-            (*j)++;
-            break;
-        default:
-            break;
-        }
-    }
-
-}
-
-int TrouveRetour(char gauche, char droite, char haut, char bas){
-    if (gauche == 4){return 0;}
-    if (haut == 4){return 1;}
-    if (droite == 4){return 2;}
-    if (bas == 4){return 3;}
+    if(cpt == 0){Rembobine(tab, i, j, dernierMvt);}
 }
 
 void Droite(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt){
@@ -114,9 +101,9 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
         else if(tab[*i][*j-1]==1){
             Monte(tab,i,j,dernierMvt);
         }
-        else{Rembobine(tab,i,j,dernierMvt);}
+        else{Rembobine(tab,i,j, dernierMvt);}
     }
-    if(*dernierMvt==1){
+    else if(*dernierMvt==1){
         if(tab[*i-1][*j]==1){
             Gauche(tab,i,j,dernierMvt);
         }
@@ -126,9 +113,9 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
         else if(tab[*i+1][*j]==1){
             Droite(tab,i,j,dernierMvt);
         }
-        else{Rembobine(tab,i,j,dernierMvt);}
+        else{Rembobine(tab,i,j, dernierMvt);}
     }
-    if(*dernierMvt==2){
+    else if(*dernierMvt==2){
         if(tab[*i][*j-1]==1){
             Monte(tab,i,j,dernierMvt);
         }
@@ -138,9 +125,9 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
         else if(tab[*i][*j+1]==1){
             Descend(tab,i,j,dernierMvt);
         }
-        else{Rembobine(tab,i,j,dernierMvt);}
+        else{Rembobine(tab,i,j, dernierMvt);}
     }
-    if(*dernierMvt==3){
+    else if(*dernierMvt==3){
         if(tab[*i+1][*j]==1){
             Droite(tab,i,j,dernierMvt);
         }
@@ -150,12 +137,12 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
         else if(tab[*i-1][*j]==1){
             Gauche(tab,i,j,dernierMvt);
         }
-        else{Rembobine(tab,i,j,dernierMvt);}
+        else{Rembobine(tab,i,j, dernierMvt);}
     }
 }
 
 void Resolution(char tab[TAILLE_MAX][TAILLE_MAX]){
-    unsigned int i,j,x,y,DernierMvt;
+    unsigned int i,j,x,y,DernierMvt, tmp;
     x=TrouverLongeur(tab);
     y=TrouverHauteur(tab,x);
     i=TrouverDepart(tab,x);
