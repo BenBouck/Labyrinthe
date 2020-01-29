@@ -101,6 +101,10 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
         else if(tab[*i][*j-1]==1){
             Monte(tab,i,j,dernierMvt);
         }
+	else if(tab[*i-1][*j]==3){
+	    tab[*i][*j] = 3;
+	    Gauche(tab,i,j,dernierMvt);
+	}
         else{Rembobine(tab,i,j, dernierMvt);}
     }
     else if(*dernierMvt==1){
@@ -113,6 +117,10 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
         else if(tab[*i+1][*j]==1){
             Droite(tab,i,j,dernierMvt);
         }
+	else if(tab[*i][*j-1]==3){
+	    tab[*i][*j] = 3;
+	    Monte(tab,i,j,dernierMvt);
+	}
         else{Rembobine(tab,i,j, dernierMvt);}
     }
     else if(*dernierMvt==2){
@@ -125,6 +133,10 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
         else if(tab[*i][*j+1]==1){
             Descend(tab,i,j,dernierMvt);
         }
+	else if(tab[*i+1][*j]==3){
+	    tab[*i][*j] = 3;
+	    Droite(tab,i,j,dernierMvt);
+	}
         else{Rembobine(tab,i,j, dernierMvt);}
     }
     else if(*dernierMvt==3){
@@ -137,6 +149,10 @@ void Deplacement(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMv
         else if(tab[*i-1][*j]==1){
             Gauche(tab,i,j,dernierMvt);
         }
+	else if(tab[*i][*j+1]==3){
+	    tab[*i][*j] = 3;
+	    Descend(tab,i,j,dernierMvt);
+	}
         else{Rembobine(tab,i,j, dernierMvt);}
     }
 }
