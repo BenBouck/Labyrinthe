@@ -18,7 +18,7 @@ int TrouverDepart(char tab[TAILLE_MAX][TAILLE_MAX],int Longeur);
 int NombreToucheR(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j);
 
 //Sortent le solveur d'une impasse.
-void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt);
+void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt);
 int TrouveRetour(char gauche, char droite, char haut, char bas);
 
 //Déplacent le solveur dans le labyrinthe.

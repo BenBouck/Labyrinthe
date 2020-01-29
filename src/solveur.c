@@ -54,35 +54,6 @@ void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX], int *i, int *j, int *dernierMvt
     if(tab[*i+1][*j]==1){cpt++;}
     if(tab[*i][*j-1]==1){cpt++;}
     if(tab[*i][*j+1]==1){cpt++;}
-<<<<<<< HEAD
-=======
-    return cpt;
-}
-
-void Rembobine(char tab[TAILLE_MAX][TAILLE_MAX],int *i, int *j, int *dernierMvt){
-    while(NombreToucheR(tab,i,j)<2){
-        tab[*i][*j]=1;
-        switch (TrouveRetour(tab[*i-1][*j], tab[*i+1][*j], tab[*i][*j-1], tab[*i][*j+1]))
-        {
-        case 0:
-            (*i)--;
-            break;
-        case 1:
-            (*j)--;
-            break;
-        case 2:
-            (*i)++;
-            break;
-        case 3:
-            (*j)++;
-            break;
-        default:
-            break;
-        }
-    }
-
-}
->>>>>>> 4704f6079a9347b9bbde3a14fc75779c5e215aa9
 
     if(cpt == 0){Rembobine(tab, i, j, dernierMvt);}
 }
