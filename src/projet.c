@@ -78,9 +78,7 @@ int main(){
             break;
         case 4:     //Résout un labyrinthe
             if(tabInM == 1){
-                ecrireLabyrinthe(tab, "tmp.txt");
-                lireLabyrinthe(tabResolu, "tmp.txt");
-                remove("tmp.txt");
+                copyLab(tab, tabResolu);
                 Resolution(tabResolu);
                 tabResoluInM = 1;
             }
@@ -89,8 +87,8 @@ int main(){
             }
             break;
         case 5:     //Affiche un labyrinthe
-            if(tabInM){
-                if(tabResoluInM){
+            if(tabInM == 1){
+                if(tabResoluInM == 1){
                     do{
                         printf("Que souhaitez-vous afficher ?\n\t- 0 : labyrinthe vierge\n\t- 1 : labyrinthe résolu\n\t- 2 : les deux\n\n\nVotre choix : ");
                         scanf("%i", &choix2);
