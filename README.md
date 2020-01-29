@@ -25,6 +25,8 @@ Les fichiers *.c* et *.h* sont disponibles dans le répertoire */src* du projet.
 
 Les fichiers objets compilés sous windows avec GCC sont également disponibles dans le répertoire */bin/WIN32*, ainsi que le fichier exécutable sous windows dans le répertoire */exe/WIN32*.
 
+Pour une compilation avec GCC, il est possible d'exécuter les fichier *compil_gcc_WIN32.bat* sous Windows, ou bien *compil_gcc_UNIX* sous linux.
+
 ## Utilisation
 
 L'utilisation du programme est guidée via une interface console basique.

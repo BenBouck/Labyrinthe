@@ -15,7 +15,7 @@ void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX]){
                  *   6 : Fin de tableau
                  */
                 case 0 :
-                    printf("%c%c",219,219);
+                    printf("##");
                     break;
                 case 1 :
                     printf("  ");
@@ -24,10 +24,10 @@ void afficherLabyrinthe(char labyrinthe[TAILLE_MAX][TAILLE_MAX]){
                     printf("E ");
                     break;
                 case 3 :
-                    printf("~ ");
+                    printf("  ");
                     break;
                 case 4 :
-                    printf("%c%c",176,176);
+                    printf("--");
                     break;
                 case 5 :
                     printf("\n");

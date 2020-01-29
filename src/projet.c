@@ -108,6 +108,7 @@ int main(){
                     afficherLabyrinthe(tabResolu);
                     break;
                 }
+                printf("\n\n\n");
             }
             else {
                 printf("Veuillez générer ou charger un labyrinthe.\n");
