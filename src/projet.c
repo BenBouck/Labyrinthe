@@ -33,7 +33,7 @@ int main(){
     printf("Bienvenue !\n");
 
     do{
-        printf("Veuillez sélectionner une fonctionnalité :\n\t- 0 : Quitter le programme\n\t- 1 : Générer un labyrinthe\n\t- 2 : Sauvegarder un labyrinthe (nécessite qu'un labyrinthe ait été généré ou chargé)\n\t- 3 : charger un labyrinthe\n\t- 4 : résoudre un labyrinthe\n\t- 5 : afficher un labyrinthe\n\n\nVotre choix : ");
+        printf("Veuillez selectionner une fonctionnalite :\n\t- 0 : Quitter le programme\n\t- 1 : Generer un labyrinthe\n\t- 2 : Sauvegarder un labyrinthe (necessite qu'un labyrinthe ait ete genere ou charge)\n\t- 3 : charger un labyrinthe\n\t- 4 : resoudre un labyrinthe\n\t- 5 : afficher un labyrinthe\n\n\nVotre choix : ");
         scanf("%i", &choix);
 
         switch (choix){
@@ -53,24 +53,24 @@ int main(){
             break;
         case 2:     //Sauvegarde un labyrinthe
             if(tabInM == 1){
-                printf("Veuillez saisir un chemin de destination suivi du nom de fichier \n(exemple : ""/lab/ex1"" enregistera un fichier nommé ""ex1.txt"" dans le dossier ""lab1"") \n(attention, si un fichier du même nom existe déjà, il sera écrasé)\n");
+                printf("Veuillez saisir un chemin de destination suivi du nom de fichier \n(exemple : ""/lab/ex1"" enregistera un fichier nomme ""ex1.txt"" dans le dossier ""lab1"") \n(attention, si un fichier du meme nom existe deja, il sera ecrase)\n");
                 scanf("%s", &nom);
                 if (ecrireLabyrinthe(tab, strcat(nom, ".txt")) == 1){
-                    printf("Un probleme est survenu, veuillez vérifier le nom de ficier fourni.\n");
+                    printf("Un probleme est survenu, veuillez verifier le nom de fichier fourni.\n");
                 }
                 if(tabResoluInM == 1){
                     ecrireLabyrinthe(tabResolu, strcat(nom, "_SOLVED.txt"));
                 }
             }
             else{
-                printf("Veuillez générer ou charger un labyrinthe.\n");
+                printf("Veuillez generer ou charger un labyrinthe.\n");
             }
             break;
         case 3:     //Charge un labyrinthe
             printf("Veuillez saisir l'emplacement et le nom du fichier (sans extension): ");
             scanf("%s", &nom);
             if(lireLabyrinthe(tab, strcat(nom, ".txt")) == 1){
-               printf("Un probleme est survenu, veuillez vérifier le nom de ficier fourni.\n");
+               printf("Un probleme est survenu, veuillez vérifier le nom de fichier fourni.\n");
             } else {
                 tabInM = 1;
                 if(lireLabyrinthe(tabResolu, strcat(nom, "_SOLVED.txt")) == 0){tabResoluInM = 1;}
@@ -83,14 +83,14 @@ int main(){
                 tabResoluInM = 1;
             }
             else{
-                printf("Veuillez générer ou charger un labyrinthe.\n");
+                printf("Veuillez generer ou charger un labyrinthe.\n");
             }
             break;
         case 5:     //Affiche un labyrinthe
             if(tabInM == 1){
                 if(tabResoluInM == 1){
                     do{
-                        printf("Que souhaitez-vous afficher ?\n\t- 0 : labyrinthe vierge\n\t- 1 : labyrinthe résolu\n\t- 2 : les deux\n\n\nVotre choix : ");
+                        printf("Que souhaitez-vous afficher ?\n\t- 0 : labyrinthe vierge\n\t- 1 : labyrinthe resolu\n\t- 2 : les deux\n\n\nVotre choix : ");
                         scanf("%i", &choix2);
                     } while(choix2 != 0 && choix2 != 1 && choix2 != 2);
                 }
@@ -111,11 +111,11 @@ int main(){
                 printf("\n\n\n");
             }
             else {
-                printf("Veuillez générer ou charger un labyrinthe.\n");
+                printf("Veuillez generer ou charger un labyrinthe.\n");
             }
             break;
         default:
-            printf("Veuillez saisir l'une des valeurs proposées.\n");
+            printf("Veuillez saisir l'une des valeurs proposees.\n");
             break;
         }
 
